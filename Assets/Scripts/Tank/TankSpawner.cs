@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class TankSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject tankPrefab;
-    // Start is called before the first frame update
+    [SerializeField] private TankView tankPrefab;
+
     void Start()
     {
         if(tankPrefab == null)
         {
             Debug.LogError("Tank Prefab is empty");
+            return;
         }
-        else
-            Instantiate(tankPrefab, transform.position, Quaternion.identity);
+
+        TankModel tankModel = new TankModel(20);
+        TankController tankController = new TankController(tankModel, tankPrefab);
     }
 }
