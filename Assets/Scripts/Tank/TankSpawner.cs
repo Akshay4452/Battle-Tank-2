@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class TankSpawner : MonoBehaviour
 {
-    [SerializeField] private TankView tankPrefab;
+    [SerializeField] private TankView m_tankPrefab;
+    private float m_tankMoveSpeed;
+    private float m_tankRotateSpeed;
 
     void Start()
     {
-        if(tankPrefab == null)
+        if(m_tankPrefab == null)
         {
             Debug.LogError("Tank Prefab is empty");
             return;
         }
 
-        TankModel tankModel = new TankModel(20);
-        TankController tankController = new TankController(tankModel, tankPrefab);
+        m_tankMoveSpeed = 20;
+        m_tankRotateSpeed = 1;
+
+        TankModel tankModel = new TankModel(m_tankMoveSpeed, m_tankRotateSpeed);
+        TankController tankController = new TankController(tankModel, m_tankPrefab);
     }
 }
