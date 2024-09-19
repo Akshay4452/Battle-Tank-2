@@ -21,7 +21,7 @@ public class TankController
 
     public void Rotate(float rotate, float rotateSpeed)
     {
-        m_tankView.transform.Rotate(Vector3.up * rotate * rotateSpeed);
+        m_tankView.transform.Rotate(Vector3.up * rotate * rotateSpeed * Time.deltaTime);
     }
 
     public TankModel GetModel()

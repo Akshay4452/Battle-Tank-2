@@ -17,8 +17,13 @@ public class TankSpawner : MonoBehaviour
         }
 
         m_tankMoveSpeed = 20;
-        m_tankRotateSpeed = 1;
+        m_tankRotateSpeed = 200;
 
+        CreateTank();
+    }
+
+    private void CreateTank()
+    {
         TankModel tankModel = new TankModel(m_tankMoveSpeed, m_tankRotateSpeed);
         TankController tankController = new TankController(tankModel, m_tankPrefab);
     }

@@ -20,6 +20,12 @@ public class TankView : MonoBehaviour
         {
             Debug.LogError("No rigid body for tank exists");
         }
+
+        Camera mainCam = Camera.main;
+        mainCam.transform.SetParent(transform);
+        mainCam.transform.position = new Vector3(0f, 3.5f, -7f);
+        mainCam.transform.Rotate(new Vector3(10f,0,0));
+        
     }
 
     public void SetController(TankController tankController)
