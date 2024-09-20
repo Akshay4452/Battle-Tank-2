@@ -1,12 +1,27 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TankSpawner : MonoBehaviour
 {
     [SerializeField] private TankView m_tankPrefab;
-    private float m_tankMoveSpeed;
-    private float m_tankRotateSpeed;
+    public TankType tankToSelect;
+
+    [System.Serializable]
+    public class Tank
+    {
+        public float moveSpeed;
+        public float rotateSpeed;
+        public TankType tankType;
+
+        public Tank(float tankMoveSpeed, float tankRotateSpeed, TankType tankType)
+        {
+            moveSpeed = tankMoveSpeed;
+            rotateSpeed = tankRotateSpeed;
+            this.tankType = tankType;
+        }
+    }
+
+    public List<Tank> tanksList = new List<Tank>();
 
     void Start()
     {
@@ -15,16 +30,19 @@ public class TankSpawner : MonoBehaviour
             Debug.LogError("Tank Prefab is empty");
             return;
         }
-
-        m_tankMoveSpeed = 20;
-        m_tankRotateSpeed = 200;
-
+        tankToSelect = TankType.GreenTank; // default tank - Green tank
         CreateTank();
     }
 
     private void CreateTank()
     {
-        TankModel tankModel = new TankModel(m_tankMoveSpeed, m_tankRotateSpeed);
-        TankController tankController = new TankController(tankModel, m_tankPrefab);
+        //int tankSelected = 0;  // To-Do: Link with UI
+
+        Tank tank = tanksList[(int)tankToSelect];
+        if (tank != null)
+        {
+            TankModel tankModel = new TankModel(tank.moveSpeed, tank.rotateSpeed);
+            TankController tankController = new TankController(tankModel, m_tankPrefab);
+        }
     }
 }
