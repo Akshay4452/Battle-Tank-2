@@ -4,13 +4,15 @@ public class TankModel
 {
     private TankController m_tankController;
 
-    public float movementSpeed;
-    public float rotateSpeed;
+    public float m_movementSpeed;
+    public float m_rotationSpeed;
+    public Color m_tankColor;
 
-    public TankModel(float moveSpeed, float rotateSpeed)
+    public TankModel(float moveSpeed, float rotateSpeed, Color tankColor)
     {
-        movementSpeed = moveSpeed;
-        this.rotateSpeed = rotateSpeed;
+        m_movementSpeed = moveSpeed;
+        m_rotationSpeed = rotateSpeed;
+        m_tankColor = tankColor;
     }
     public void SetController(TankController controller)
     {

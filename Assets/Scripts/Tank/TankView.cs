@@ -9,7 +9,7 @@ public class TankView : MonoBehaviour
     #region Tank Movement Variables
     private float movement;
     private float rotation;
-    #endregion 
+    #endregion
 
     public Rigidbody rb;
 
@@ -46,12 +46,12 @@ public class TankView : MonoBehaviour
 
         if (movement != 0)
         {
-            m_tankController.Move(movement, m_tankController.GetModel().movementSpeed);
+            m_tankController.Move(movement, m_tankController.GetModel().m_movementSpeed);
         }
 
         if(rotation != 0)
         {
-            m_tankController.Rotate(rotation, m_tankController.GetModel().rotateSpeed);
+            m_tankController.Rotate(rotation, m_tankController.GetModel().m_rotationSpeed);
         }
     }
 }

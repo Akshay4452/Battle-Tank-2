@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class TankSpawner : MonoBehaviour
 {
     [SerializeField] private TankView m_tankPrefab;
-    public TankType tankToSelect;
+    public TankType tankToSelect;  // Link with Ui
 
     [System.Serializable]
     public class Tank
@@ -12,12 +13,14 @@ public class TankSpawner : MonoBehaviour
         public float moveSpeed;
         public float rotateSpeed;
         public TankType tankType;
+        public Color tankColor;
 
-        public Tank(float tankMoveSpeed, float tankRotateSpeed, TankType tankType)
+        public Tank(float tankMoveSpeed, float tankRotateSpeed, TankType tankType, Color color)
         {
             moveSpeed = tankMoveSpeed;
             rotateSpeed = tankRotateSpeed;
             this.tankType = tankType;
+            tankColor = color;
         }
     }
 
@@ -30,19 +33,27 @@ public class TankSpawner : MonoBehaviour
             Debug.LogError("Tank Prefab is empty");
             return;
         }
-        tankToSelect = TankType.GreenTank; // default tank - Green tank
         CreateTank();
     }
 
     private void CreateTank()
     {
-        //int tankSelected = 0;  // To-Do: Link with UI
-
         Tank tank = tanksList[(int)tankToSelect];
-        if (tank != null)
+        switch (tankToSelect)
         {
-            TankModel tankModel = new TankModel(tank.moveSpeed, tank.rotateSpeed);
-            TankController tankController = new TankController(tankModel, m_tankPrefab);
+            case TankType.GreenTank:
+                tank.tankColor = Color.green;
+                break;
+            case TankType.BlueTank:
+                tank.tankColor = Color.blue;
+                break;
+            case TankType.RedTank:
+                tank.tankColor = Color.red;
+                break;
         }
+
+        TankModel tankModel = new TankModel(tank.moveSpeed, tank.rotateSpeed, tank.tankColor);
+        TankController tankController = new TankController(tankModel, m_tankPrefab);
+        
     }
 }
