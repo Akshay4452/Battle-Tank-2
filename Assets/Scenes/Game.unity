@@ -159,12 +159,12 @@ MonoBehaviour:
     rotateSpeed: 200
     tankType: 0
     tankColor: {r: 0, g: 0, b: 0, a: 0}
-  - moveSpeed: 40
-    rotateSpeed: 400
+  - moveSpeed: 30
+    rotateSpeed: 300
     tankType: 1
     tankColor: {r: 0, g: 0, b: 0, a: 0}
-  - moveSpeed: 60
-    rotateSpeed: 600
+  - moveSpeed: 10
+    rotateSpeed: 400
     tankType: 2
     tankColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &1028064944
