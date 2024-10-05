@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private Button tankSelector;
-    private void Start()
+    [SerializeField] private List<Button> tankSelectorButtons;
+    private void OnEnable()
     {
-        tankSelector.onClick.AddListener(onButtonClick);
+        foreach (Button button in tankSelectorButtons)  // add listener to all the buttons
+        {
+            button.onClick.AddListener(onButtonClick);
+        } 
     }
 
     public void onButtonClick()
     {
-        Debug.Log("Button clicked");
+        SceneManager.LoadScene(1);
     }
 }
